@@ -15,9 +15,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 // 기본적인 객체 스키마 생성 => 유효성검증
 const formSchema = z.object({
-  username: z.string().min(2, {
+  name: z.string().min(2, {
     message: "2글자 이상 입력해주세요",
   }),
   email: z.string().email({message: "이메일을 올바르게 입력해주세요"}),
@@ -29,7 +38,7 @@ export default function FormComponent() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
     },
@@ -42,52 +51,60 @@ export default function FormComponent() {
     console.log(values);
   }
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Username</FormLabel> */}
-              <FormControl>
-                <Input placeholder="name" {...field} />
-              </FormControl>
-              
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>email</FormLabel> */}
-              <FormControl>
-                <Input placeholder="email" {...field} />
-              </FormControl>
-             
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>password</FormLabel> */}
-              <FormControl>
-                <Input placeholder="password" {...field} />
-              </FormControl>
-             
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+    <Card>
+      <CardHeader>
+        <CardTitle>Welcome</CardTitle>
+        <CardDescription>Enter your info below to receive email. 🍀</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="name" {...field} />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="m@example.com" {...field} />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="******" {...field} />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 }
