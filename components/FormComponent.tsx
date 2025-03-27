@@ -105,6 +105,9 @@ export default function FormComponent() {
           </form>
         </Form>
       </CardContent>
+      <CardFooter>
+       © 2025. All rights reserved.
+      </CardFooter>
     </Card>
   );
 }
