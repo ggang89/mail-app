@@ -2,6 +2,7 @@
 import FormComponent from "../../components/FormComponent";
 
 export default function Page() {
+  
   return (
     <div className="p-50">
      
