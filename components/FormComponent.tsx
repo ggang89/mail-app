@@ -14,7 +14,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import {
   Card,
   CardContent,
@@ -29,8 +28,8 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: "2글자 이상 입력해주세요",
   }),
-  email: z.string().email({message: "이메일을 올바르게 입력해주세요"}),
-  password: z.string().min(6, {message: "6글자 이상 입력해주세요"}),
+  email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),
+  password: z.string().min(6, { message: "6글자 이상 입력해주세요" }),
 });
 
 export default function FormComponent() {
@@ -54,7 +53,9 @@ export default function FormComponent() {
     <Card>
       <CardHeader>
         <CardTitle>Welcome</CardTitle>
-        <CardDescription>Enter your info below to receive email. 🍀</CardDescription>
+        <CardDescription>
+          Enter your info below to receive email. 🍀
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -80,7 +81,7 @@ export default function FormComponent() {
                 <FormItem>
                   <FormLabel className="font-bold">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="m@example.com" {...field} />
+                    <Input type="email" placeholder="m@example.com" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -94,7 +95,7 @@ export default function FormComponent() {
                 <FormItem>
                   <FormLabel className="font-bold">Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="******" {...field} />
+                    <Input type="password" placeholder="******" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -105,9 +106,7 @@ export default function FormComponent() {
           </form>
         </Form>
       </CardContent>
-      <CardFooter>
-       © 2025. All rights reserved.
-      </CardFooter>
+      <CardFooter>© 2025. All rights reserved.</CardFooter>
     </Card>
   );
 }
