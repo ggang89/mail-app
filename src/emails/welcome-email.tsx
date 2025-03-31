@@ -65,7 +65,7 @@ export default function WelcomeEmail({ weather }: { weather: Props }) {
 
             <Button
               href="https://github.com/ggang89/mail-app"
-              className="flex justify-center items-center bg-black text-green-300 px-8 py-3 rounded-full hover:bg-indigo-50"
+              className="text-center flex justify-center items-center bg-black text-green-300 px-8 py-3 rounded-full hover:bg-indigo-50"
             >
               {/* 왜 hover만 안 먹어? */}
               Go to Project GitPage 🌱

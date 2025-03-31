@@ -29,7 +29,8 @@ const formSchema = z.object({
     message: "2글자 이상 입력해주세요",
   }),
   email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),
-  password: z.string().min(6, { message: "6글자 이상 입력해주세요" }),
+  password: z.string().min(6, { message: "10글자 이상 입력해주세요" }),
+  passwordCheck: z.string()
 });
 
 export default function FormComponent() {
@@ -40,6 +41,7 @@ export default function FormComponent() {
       name: "",
       email: "",
       password: "",
+      passwordCheck: "",
     },
   });
 
@@ -81,7 +83,11 @@ export default function FormComponent() {
                 <FormItem>
                   <FormLabel className="font-bold">Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="m@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="m@example.com"
+                      {...field}
+                    />
                   </FormControl>
 
                   <FormMessage />
@@ -95,13 +101,36 @@ export default function FormComponent() {
                 <FormItem>
                   <FormLabel className="font-bold">Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="******" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="**********"
+                      {...field}
+                    />
                   </FormControl>
 
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="passwordCheck"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">PasswordCheck</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="**********"
+                      {...field}
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <Button type="submit">Submit</Button>
           </form>
         </Form>
