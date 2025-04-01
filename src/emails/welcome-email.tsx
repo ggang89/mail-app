@@ -9,21 +9,23 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-//import getWeather from "../../api/weather";
-type Props = {
-  weather: [
-    {
-      main: "string";
-      icon: "string";
-    },
-  ];
-  main: {
-    temp: number;
-  };
-};
-export default function WelcomeEmail({ weather }: { weather: Props }) {
-  console.log(weather);
-  
+
+// export type Props = {
+//   weather: [
+//     {
+//       main: "string";
+//       id: number;
+//     },
+//   ];
+//   main: {
+//     temp: number;
+//   };
+// };
+export default async function WelcomeEmail(
+//  { weather }: { weather: Props }
+) {
+  //console.log(weather);
+
   return (
     <Tailwind
       config={{
@@ -45,12 +47,12 @@ export default function WelcomeEmail({ weather }: { weather: Props }) {
             </Heading>
 
             {/* 날씨 불러오기 ? */}
-            <Section>
+            {/* <Section>
               <Text className="text-center">
                 현재 온도: {weather?.main?.temp}°C
                 <br />
               </Text>
-            </Section>
+            </Section> */}
 
             <Section>
               <Text className="text-center text-lg/10 p-4 ">

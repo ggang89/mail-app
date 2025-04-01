@@ -55,13 +55,14 @@ export default function FormComponent() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    form.reset();
   }
   return (
     <Card>
       <CardHeader>
         <CardTitle>Welcome</CardTitle>
         <CardDescription>
-          Enter your info below to receive email. 🍀
+          Enter your info below to receive a lucky letter. 🍀
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -108,7 +109,7 @@ export default function FormComponent() {
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="10글자 이상 입력해주세요"
+                      placeholder="10글자 이상 입력해주세요."
                       {...field}
                     />
                   </FormControl>
