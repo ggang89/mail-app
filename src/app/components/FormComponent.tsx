@@ -47,14 +47,13 @@ export default function FormComponent() {
       email: "",
       password: "",
       passwordCheck: "",
-    },
+    }
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    
+    console.log("성공", values);
     form.reset();
   }
   return (
