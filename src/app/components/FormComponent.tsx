@@ -23,6 +23,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { Send } from "lucide-react";
+
 // 기본적인 객체 스키마 생성 => 유효성검증
 const formSchema = z
   .object({
@@ -30,7 +32,9 @@ const formSchema = z
       message: "2글자 이상 입력해주세요",
     }),
     email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),
-    password: z.string().min(10, { message: "비밀번호는 최소 10글자 이상이어야 합니다." }),
+    password: z
+      .string()
+      .min(10, { message: "비밀번호는 최소 10글자 이상이어야 합니다." }),
     passwordCheck: z.string().min(10, { message: "10글자 이상 입력해주세요" }),
   })
   .refine((val) => val.password === val.passwordCheck, {
@@ -47,12 +51,11 @@ export default function FormComponent() {
       email: "",
       password: "",
       passwordCheck: "",
-    }
+    },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    
     console.log("성공", values);
     form.reset();
   }
@@ -136,7 +139,12 @@ export default function FormComponent() {
               )}
             />
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit">
+              <div className="flex items-center gap-2">
+                Submit
+                <Send />
+              </div>
+            </Button>
           </form>
         </Form>
       </CardContent>
