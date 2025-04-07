@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { formSchema, Schema } from "../schema/index";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,26 +26,12 @@ import {
 
 import { Send } from "lucide-react";
 
-// 기본적인 객체 스키마 생성 => 유효성검증
-const formSchema = z
-  .object({
-    name: z.string().min(2, {
-      message: "2글자 이상 입력해주세요",
-    }),
-    email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),
-    password: z
-      .string()
-      .min(10, { message: "비밀번호는 최소 10글자 이상이어야 합니다." }),
-    passwordCheck: z.string().min(10, { message: "10글자 이상 입력해주세요" }),
-  })
-  .refine((val) => val.password === val.passwordCheck, {
-    message: "비밀번호가 일치하지 않습니다",
-    path: ["passwordCheck"],
-  });
 
 export default function FormComponent() {
-  // z.infer<typeof formSchema> => formSchema의 타입을 추출
-  const form = useForm<z.infer<typeof formSchema>>({
+ 
+  // useForm의 제네릭 타입으로 사용
+  const form = useForm<Schema>({
+    // 만든 schema를 zodResolver를 통해 react-hook-form에 연결
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
