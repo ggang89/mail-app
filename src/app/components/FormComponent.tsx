@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { formSchema, Schema } from "../schema/index";
 
@@ -25,10 +25,9 @@ import {
 } from "@/components/ui/card";
 
 import { Send } from "lucide-react";
-
+import { sendMail } from "../actions/send-mail";
 
 export default function FormComponent() {
- 
   // useForm의 제네릭 타입으로 사용
   const form = useForm<Schema>({
     // 만든 schema를 zodResolver를 통해 react-hook-form에 연결
@@ -41,11 +40,28 @@ export default function FormComponent() {
     },
   });
 
+  // 서버액션 연결하기
+  const onValid: SubmitHandler<Schema> = async (data) => {
+    try {
+      const result = await sendMail(data);
+      if (result.isOK) {
+        alert("메일이 성공적으로 발송되었습니다.");
+      } else {
+        form.setError("email", { message: result.error });
+      }
+    } catch {
+      console.log("서버에러");
+      form.setError("email", {
+        message: "서버와의 통신에 실패했습니다. 다시 시도해주세요",
+      });
+    }
+  };
+
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("성공", values);
-    form.reset();
-  }
+  // function onSubmit(values: z.infer<typeof formSchema>) {
+  //   console.log("성공", values);
+  //   form.reset();
+  // }
   return (
     <Card>
       <CardHeader>
@@ -56,7 +72,7 @@ export default function FormComponent() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onValid)} className="space-y-8">
             <FormField
               control={form.control}
               name="name"
@@ -126,7 +142,7 @@ export default function FormComponent() {
               )}
             />
 
-            <Button type="submit">
+            <Button type="submit" >
               <div className="flex items-center gap-2">
                 Submit
                 <Send />
