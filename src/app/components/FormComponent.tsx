@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { formSchema, Schema } from "../schema/index";
 
 import { Button } from "@/components/ui/button";
@@ -23,6 +22,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { toast } from "sonner";
+
 
 import { Send } from "lucide-react";
 import { sendMail } from "../actions/send-mail";
@@ -41,12 +42,16 @@ export default function FormComponent() {
   });
 
   // 서버액션 연결하기
-  const onValid: SubmitHandler<Schema> = async (data) => {
+  const onSubmit: SubmitHandler<Schema> = async (data) => {
     try {
       const result = await sendMail(data);
+      console.log("서버 응답",result)
       if (result.isOK) {
-        alert("메일이 성공적으로 발송되었습니다.");
+        
+        toast("✅메일이 성공적으로 발송되었습니다.");
+
       } else {
+        console.log("에러", result.error);
         form.setError("email", { message: result.error });
       }
     } catch {
@@ -55,6 +60,8 @@ export default function FormComponent() {
         message: "서버와의 통신에 실패했습니다. 다시 시도해주세요",
       });
     }
+    // form.reset();
+    
   };
 
   // 2. Define a submit handler.
@@ -72,7 +79,7 @@ export default function FormComponent() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onValid)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
               name="name"
@@ -142,7 +149,7 @@ export default function FormComponent() {
               )}
             />
 
-            <Button type="submit" >
+            <Button type="submit">
               <div className="flex items-center gap-2">
                 Submit
                 <Send />

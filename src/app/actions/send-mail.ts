@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { error } from "console";
 
 type Params = {
   email: string;
