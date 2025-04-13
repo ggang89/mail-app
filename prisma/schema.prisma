@@ -13,6 +13,7 @@ datasource db {
 // 테이블 정의
 model User {
   id        Int      @id @default(autoincrement())
+  name      String   @unique @default("")
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

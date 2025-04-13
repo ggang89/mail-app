@@ -4,7 +4,7 @@ import { z } from "zod";
 // 받아야 하는 값의 형태 정의
 export const formSchema = z
   .object({
-    name: z.string().min(2, {
+    name: z.string().trim().min(2, {
       message: "2글자 이상 입력해주세요",
     }),
     email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),

@@ -43,6 +43,7 @@ export default function FormComponent() {
 
   // 서버액션 연결하기
   const onSubmit: SubmitHandler<Schema> = async (data) => {
+    console.log("data",data)
     try {
       const result = await sendMail(data);
       console.log("서버 응답",result)
@@ -60,7 +61,6 @@ export default function FormComponent() {
         message: "서버와의 통신에 실패했습니다. 다시 시도해주세요",
       });
     }
-    // form.reset();
     
   };
 
