@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/card";
 import { toast } from "sonner";
 
-
 import { Send } from "lucide-react";
 import { sendMail } from "../actions/send-mail";
 
@@ -36,21 +35,17 @@ export default function FormComponent() {
     defaultValues: {
       name: "",
       email: "",
-      password: "",
-      passwordCheck: "",
     },
   });
 
   // 서버액션 연결하기
   const onSubmit: SubmitHandler<Schema> = async (data) => {
-    console.log("data",data)
+    console.log("data", data);
     try {
       const result = await sendMail(data);
-      console.log("서버 응답",result)
+      console.log("서버 응답", result);
       if (result.isOK) {
-        
         toast("✅메일이 성공적으로 발송되었습니다.");
-
       } else {
         console.log("에러", result.error);
         form.setError("email", { message: result.error });
@@ -61,7 +56,6 @@ export default function FormComponent() {
         message: "서버와의 통신에 실패했습니다. 다시 시도해주세요",
       });
     }
-    
   };
 
   // 2. Define a submit handler.
@@ -104,42 +98,6 @@ export default function FormComponent() {
                     <Input
                       type="email"
                       placeholder="m@example.com"
-                      {...field}
-                    />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-bold">Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="10글자 이상 입력해주세요."
-                      {...field}
-                    />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="passwordCheck"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-bold">PasswordCheck</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="비밀번호를 다시 입력해주세요."
                       {...field}
                     />
                   </FormControl>

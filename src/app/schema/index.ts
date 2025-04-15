@@ -7,16 +7,9 @@ export const formSchema = z
     name: z.string().trim().min(2, {
       message: "2글자 이상 입력해주세요",
     }),
-    email: z.string().email({ message: "이메일을 올바르게 입력해주세요" }),
-    password: z
-      .string()
-      .min(10, { message: "비밀번호는 최소 10글자 이상이어야 합니다." }),
-    passwordCheck: z.string().min(10, { message: "10글자 이상 입력해주세요" }),
+    email: z.string().trim().email({ message: "이메일을 올바르게 입력해주세요" }),
   })
-  .refine((val) => val.password === val.passwordCheck, {
-    message: "비밀번호가 일치하지 않습니다",
-    path: ["passwordCheck"],
-  });
+  
 
 // formSchema의 타입을 추출
 // type Schema = {name: string; email:string; password: string; passwordCheck: string;} 와 같다
