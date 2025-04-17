@@ -43,9 +43,11 @@ export default function FormComponent() {
     console.log("data", data);
     try {
       const result = await sendMail(data);
+      const weather = await result.weather();
       console.log("서버 응답", result);
       if (result.isOK) {
         toast("✅메일이 성공적으로 발송되었습니다.");
+        toast(weather);
       } else {
         console.log("에러", result.error);
         form.setError("email", { message: result.error });
