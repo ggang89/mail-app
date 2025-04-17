@@ -5,13 +5,15 @@ import getWeather, { Props } from "../api/weather/route";
 
 type Params = {
   email: string;
+  name: string;
 };
 
 export async function sendMail(params: Params) {
   const { email } = params;
-  
+  const {name} = params;
   const weather:Props = await getWeather();
   console.log("날씨", weather);
+
     let user = null;
 
   // 1. 이메일을 가지고 유저를 찾는다
@@ -40,6 +42,7 @@ export async function sendMail(params: Params) {
     await prisma.user.create({
       data: {
         email: email,
+        name:name,
       },
     });
   } catch {
@@ -54,7 +57,8 @@ export async function sendMail(params: Params) {
   return {
     isOK: true,
 
+    name: name,
     // 날씨
-    weather: await weather
+    weather: weather
   };
 }
