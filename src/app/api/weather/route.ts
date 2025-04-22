@@ -7,7 +7,7 @@ export default async function getWeather() {
   const data = await res.json();
   return data;
 }
-export type Props = {
+export type WeatherProps = {
   weather: [
     {
       main: "string";

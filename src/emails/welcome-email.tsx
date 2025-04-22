@@ -1,3 +1,4 @@
+import { WeatherProps } from "@/app/api/weather/route";
 import {
   Tailwind,
   Body,
@@ -10,22 +11,14 @@ import {
   Text,
 } from "@react-email/components";
 
-// export type Props = {
-//   weather: [
-//     {
-//       main: "string";
-//       id: number;
-//     },
-//   ];
-//   main: {
-//     temp: number;
-//   };
-// };
-export default async function WelcomeEmail(
-//  { weather }: { weather: Props }
-) {
-  //console.log(weather);
+type Props = {
+  weather: WeatherProps;
+  name: string;
 
+}
+export default async function WelcomeEmail(props:Props) {
+  const { weather, name } = props;
+  console.log("이메일", props);
   return (
     <Tailwind
       config={{
@@ -47,15 +40,16 @@ export default async function WelcomeEmail(
             </Heading>
 
             {/* 날씨 불러오기 ? */}
-            {/* <Section>
+            <Section>
               <Text className="text-center">
                 현재 온도: {weather?.main?.temp}°C
                 <br />
               </Text>
-            </Section> */}
+            </Section>
 
             <Section>
               <Text className="text-center text-lg/10 p-4 ">
+                Hi {name} 👋
                 Thank you for comming to my project! 🎉
                 <br />
                 This is a mail project using React mail and Next.js.

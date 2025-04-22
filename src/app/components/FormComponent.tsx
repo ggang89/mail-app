@@ -40,14 +40,14 @@ export default function FormComponent() {
 
   // 서버액션 연결하기
   const onSubmit: SubmitHandler<Schema> = async (data) => {
-    console.log("data", data);
+    //console.log("data", data);
     try {
       const result = await sendMail(data);
      
-      console.log("서버 응답", result);
+      //console.log("서버 응답", result);
 
       if (result.isOK) {
-        toast("✅"+result.name+"님"+"메일이 성공적으로 발송되었습니다.");
+        toast("✅ "+result.name+"님 "+"메일이 성공적으로 발송되었습니다.");
         //toast(result.weather?.main.temp+"°C"+result.weather?.weather[0].main);
       } else {
         console.log("에러", result.error);
