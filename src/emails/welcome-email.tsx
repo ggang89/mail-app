@@ -16,9 +16,10 @@ type Props = {
   name: string;
 
 }
-export default async function WelcomeEmail(props:Props) {
+// resend 오류 해결 1. 비동기함수를 동기함수로 변경
+export default  function WelcomeEmail(props:Props) {
   const { weather, name } = props;
-  console.log("이메일", props);
+ 
   return (
     <Tailwind
       config={{
@@ -49,7 +50,7 @@ export default async function WelcomeEmail(props:Props) {
 
             <Section>
               <Text className="text-center text-lg/10 p-4 ">
-                Hi {name} 👋
+                Hi {name}. 👋
                 Thank you for comming to my project! 🎉
                 <br />
                 This is a mail project using React mail and Next.js.
