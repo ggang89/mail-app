@@ -14,12 +14,11 @@ import {
 type Props = {
   weather: WeatherProps;
   name: string;
-
-}
+};
 // resend 오류 해결 1. 비동기함수를 동기함수로 변경
-export default  function WelcomeEmail(props:Props) {
+export default function WelcomeEmail(props: Props) {
   const { weather, name } = props;
- 
+
   return (
     <Tailwind
       config={{
@@ -37,34 +36,35 @@ export default  function WelcomeEmail(props:Props) {
         <Body>
           <Container>
             <Heading className="text-center text-3xl">
-              Welcome to My Mail Project ✨
+              하늘의 기분을 담아 보냅니다.⛅
             </Heading>
 
             {/* 날씨 불러오기 ? */}
             <Section>
               <Text className="text-center">
-                현재 온도: {weather?.main?.temp}°C
+                ☁🔔구름 위에서 실시간 중계 🌡 {weather?.main?.temp}°C &ensp;
+                {weather?.weather[0].main}
                 <br />
               </Text>
             </Section>
 
             <Section>
               <Text className="text-center text-lg/10 p-4 ">
-                Hi {name}. 👋
-                Thank you for comming to my project! 🎉
+                안녕하세요. {name}님👋
                 <br />
-                This is a mail project using React mail and Next.js.
+                현재 날씨를 알려주는 메일 프로젝트에 방문해 주셔서 감사합니다.😀
                 <br />
-                If you want to see the more info about the project, please click
-                the button below.
+                이 프로젝트는 React Email 과 Next.js로 만들었습니다.
+                <br />
+                프로젝트에 관해 더 자세히 알고 싶으시다면 아래 버튼을 클릭해
+                주세요.
               </Text>
             </Section>
 
             <Button
               href="https://github.com/ggang89/mail-app"
-              className="text-center flex justify-center items-center bg-black text-green-300 px-8 py-3 rounded-full hover:bg-indigo-50"
+              className="flex text-center justify-center items-center bg-black text-green-300  py-3 rounded-full hover:bg-indigo-50"
             >
-              {/* 왜 hover만 안 먹어? */}
               Go to Project GitPage 🌱
             </Button>
           </Container>

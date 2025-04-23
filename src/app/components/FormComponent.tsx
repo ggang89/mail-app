@@ -11,6 +11,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormDescription,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -43,30 +44,26 @@ export default function FormComponent() {
     //console.log("data", data);
     try {
       const result = await sendMail(data);
-      console.log("data-result", result);
-      
+      // console.log("data-result", result);
+
       await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          weather: result.weather,
-          name: result.name,})
-      })
+        body: JSON.stringify(result),
+      });
       //console.log("서버 응답", result);
 
       if (result.isOK) {
-        toast("✅ "+result.name+"님 "+"메일이 성공적으로 발송되었습니다.");
-        toast(result.weather?.main.temp+"°C "+result.weather?.weather[0].main);
-      
-      
+        toast(
+          "✅ " + result.name + "님! " + "메일이 성공적으로 발송되었습니다."
+        );
+        // toast(result.weather?.main.temp+"°C "+result.weather?.weather[0].main);
       } else {
         console.log("에러", result.error);
         form.setError("email", { message: result.error });
       }
-
-
     } catch {
       console.log("서버에러");
       form.setError("email", {
@@ -83,10 +80,8 @@ export default function FormComponent() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome</CardTitle>
-        <CardDescription>
-          Enter your info below to receive a lucky letter. 🍀
-        </CardDescription>
+        <CardTitle>Current Weather🌈</CardTitle>
+        <CardDescription>현재 날씨를 메일로 보내드립니다.💌</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -118,7 +113,9 @@ export default function FormComponent() {
                       {...field}
                     />
                   </FormControl>
-
+                  <FormDescription>
+                    ※ 같은 메일로 한 번만 받을 수 있습니다.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
