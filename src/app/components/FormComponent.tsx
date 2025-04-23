@@ -78,7 +78,7 @@ export default function FormComponent() {
   //   form.reset();
   // }
   return (
-    <Card>
+    <Card className="mx-auto max-w-2xl py-10 px-4">
       <CardHeader>
         <CardTitle>Current Weather🌈</CardTitle>
         <CardDescription>현재 날씨를 메일로 보내드립니다.💌</CardDescription>
