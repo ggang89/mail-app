@@ -1,12 +1,5 @@
-import {
-  Card,
-  CardContent,
-
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Film } from "lucide-react";
-import { Camera } from "lucide-react";
 export default function About() {
   return (
     <div className="mx-auto max-w-2xl max-x-4xl py-10 px-2">

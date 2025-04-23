@@ -14,10 +14,11 @@ import {
 type Props = {
   weather: WeatherProps;
   name: string;
+  mood: string;
 };
 // resend 오류 해결 1. 비동기함수를 동기함수로 변경
 export default function WelcomeEmail(props: Props) {
-  const { weather, name } = props;
+  const { weather, name,mood } = props;
 
   return (
     <Tailwind
@@ -39,17 +40,17 @@ export default function WelcomeEmail(props: Props) {
               하늘의 기분을 담아 보냅니다.⛅
             </Heading>
 
-            {/* 날씨 불러오기 ? */}
             <Section>
-              <Text className="text-center">
-                ☁🔔구름 위에서 실시간 중계 🌡 {weather?.main?.temp}°C &ensp;
-                {weather?.weather[0].main}
+              <Text className="text-center text-lg/10 font-bold">
+                ☁ 구름 위에서 실시간 중계 ♪🔔
                 <br />
+                {name}님이 {mood}~일 때, 하늘은 🌡 {weather?.main?.temp}°C &ensp;
+                {weather?.weather[0].main}
               </Text>
             </Section>
 
             <Section>
-              <Text className="text-center text-lg/10 p-4 ">
+              <Text className="text-center text-base/9 p-4 ">
                 안녕하세요. {name}님👋
                 <br />
                 현재 날씨를 알려주는 메일 프로젝트에 방문해 주셔서 감사합니다.😀

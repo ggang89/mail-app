@@ -36,6 +36,7 @@ export default function FormComponent() {
     defaultValues: {
       name: "",
       email: "",
+      mood: "",
     },
   });
 
@@ -53,7 +54,7 @@ export default function FormComponent() {
         },
         body: JSON.stringify(result),
       });
-      //console.log("서버 응답", result);
+      console.log("서버 응답", result);
 
       if (result.isOK) {
         toast(
@@ -120,7 +121,23 @@ export default function FormComponent() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="mood"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">Mood</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="현재 기분이나 상황은 ....💭"
+                      {...field}
+                    />
+                  </FormControl>
 
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit">
               <div className="flex items-center gap-2">
                 Submit

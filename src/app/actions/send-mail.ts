@@ -1,16 +1,17 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import getWeather, {  WeatherProps } from "../api/weather/route";
+import getWeather, { WeatherProps } from "../api/weather/route";
 
 type Params = {
   email: string;
   name: string;
+  mood: string;
 };
 
 export async function sendMail(params: Params) {
-  const { email } = params;
-  const { name } = params;
+  const { email, name, mood } = params;
+
   const weather: WeatherProps = await getWeather();
   //console.log("날씨", weather);
 
@@ -43,6 +44,7 @@ export async function sendMail(params: Params) {
       data: {
         email: email,
         name: name,
+        mood: mood,
       },
     });
   } catch {
@@ -58,7 +60,9 @@ export async function sendMail(params: Params) {
     isOK: true,
 
     name: name,
-    
+
     weather: weather,
+
+    mood: mood,
   };
 }

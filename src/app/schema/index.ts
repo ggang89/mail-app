@@ -8,6 +8,7 @@ export const formSchema = z
       message: "2글자 이상 입력해주세요",
     }),
     email: z.string().trim().email({ message: "이메일을 올바르게 입력해주세요" }),
+    mood:z.string().min(2,{message:"현재 기분이나 상황을 입력해주세요"})
   })
   
 
