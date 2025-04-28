@@ -18,7 +18,7 @@ type Props = {
 };
 // resend 오류 해결 1. 비동기함수를 동기함수로 변경
 export default function WelcomeEmail(props: Props) {
-  const { weather, name,mood } = props;
+  const { weather, name, mood } = props;
 
   return (
     <Tailwind
@@ -35,7 +35,7 @@ export default function WelcomeEmail(props: Props) {
       <Html>
         <Head />
         <Body>
-          <Container>
+          <Container className="flex items-center justify-center bg-red-100">
             <Heading className="text-center text-3xl">
               하늘의 기분을 담아 보냅니다.⛅
             </Heading>
@@ -44,7 +44,8 @@ export default function WelcomeEmail(props: Props) {
               <Text className="text-center text-lg/10 font-bold">
                 ☁ 구름 위에서 실시간 중계 ♪🔔
                 <br />
-                {name}님이 {mood}~일 때, 하늘은 🌡 {weather?.main?.temp}°C &ensp;
+                {name}님이 {mood}~일 때, 하늘은 🌡 {weather?.main?.temp}°C
+                &ensp;
                 {weather?.weather[0].main}
               </Text>
             </Section>
@@ -64,7 +65,17 @@ export default function WelcomeEmail(props: Props) {
 
             <Button
               href="https://github.com/ggang89/mail-app"
-              className="flex text-center justify-center items-center bg-black text-green-300  py-3 rounded-full hover:bg-indigo-50"
+              style={{
+                margin: "0 auto",
+                display: "block",
+                width: "300px",
+
+                textAlign: "center",
+                backgroundColor: "black",
+                color: "white",
+                padding: "10px 30px",
+                borderRadius: "30px",
+              }}
             >
               Go to Project GitPage 🌱
             </Button>

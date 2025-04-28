@@ -13,7 +13,7 @@ datasource db {
 // 테이블 정의
 model User {
   id        Int      @id @default(autoincrement())
-  name      String   @unique @default("")
+  name      String   @default("")
   email     String   @unique
   mood      String   @default("💻")
   createdAt DateTime @default(now())
