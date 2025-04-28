@@ -1,16 +1,11 @@
-// app/page.tsx
-//import { Props } from "@/emails/welcome-email";
-import FormComponent from "./components/FormComponent";
-//import getWeather from "./api/weather/route";
+
+import FormComponent from "./components/form-component";
 
 
 export default async function Page() {
- //const data:Props = await getWeather();
-  //console.log(data);
+ 
   return (
     <div className="px-40 py-10">
-     {/* <div>{data.main.temp}</div>
-      <div>{data.weather.map(w => <div key={w.id }>{w.main}</div>) }</div> */}
       <FormComponent  />
     </div>
   );

@@ -1,4 +1,4 @@
-const API_KEY = process.env.WEARHER_API;
+const API_KEY = process.env.WEARTHER_API;
 
 export default async function getWeather() {
   const res = await fetch(
