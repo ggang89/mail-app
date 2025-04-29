@@ -1,4 +1,5 @@
-import { WeatherProps } from "@/app/api/weather/route";
+
+import { WeatherProps } from "@/lib/weather";
 import {
   Tailwind,
   Body,
