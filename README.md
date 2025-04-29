@@ -8,22 +8,17 @@
 
  <h5 align="center">
  
- 🌈[current-weather-app 보러가기]("https://weather-mail-4tdl1nq6y-psys-projects-56174e04.vercel.app/)
+ 🌈[current-weather-app 보러가기](https://weather-mail-app-git-main-psys-projects-56174e04.vercel.app/)
 
 ### \*️⃣완성 이미지
 
-<!-- ◼ **Main**
-<img src="./public/main.png" alt="main이미지" width="280px">
 
-◼ **About page**
-<img src="./public/about-page.png" alt="about-page이미지" width="280px"> -->
 
 |Main|About-page|email|
 |:----:|:------:|:---:|
 |![main](./public/main.png)|![about-page](./public/about-page.png)|![mail](./public/mail.png)|
 
-<!-- ◼ **Email**
-![mail](./public/mail.png) -->
+
 
 ### 1️⃣ 기술스택
 
