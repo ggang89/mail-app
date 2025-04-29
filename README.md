@@ -1,31 +1,37 @@
 <h1 align="center"> Current Weather App🌈</h1>
 
-## 현재의 날씨를 메일📩로 보내주는 react-mail 서비스입니다.
+<h3  align="center"> 현재의 날씨를 메일📩로 보내주는 weather-mail 서비스입니다.
 
-#### 순간의 장면을 담은 스냅샷처럼📸, 순간의 날씨를 담아서 보내드립니다.🍃
+<h4 align="center"> 순간의 장면을 담은 스냅샷처럼 📸, 순간의 날씨를 담아서 보내드립니다.🍃
 
-#### 기억하고 싶은 순간을 날씨와 함께 저장하세요.⛅
+<h4 align="center"> 기억하고 싶은 순간을 날씨와 함께 저장하세요.⛅
 
-#### 🌈[current-weather-app 보러가기]()
+ <h5 align="center">🌈[current-weather-app 보러가기]()
 
-### 완성 이미지
+### \*️⃣완성 이미지
 
-**Main**
-![main](./public/main.png)
-**About page**
-![about-page](./public/about-page.png)
-**Email**
-![mail](./public/mail.png)
+<!-- ◼ **Main**
+<img src="./public/main.png" alt="main이미지" width="280px">
+
+◼ **About page**
+<img src="./public/about-page.png" alt="about-page이미지" width="280px"> -->
+
+|Main|About-page|email|
+|:----:|:------:|:---:|
+|![main](./public/main.png)|![about-page](./public/about-page.png)|![mail](./public/mail.png)|
+
+<!-- ◼ **Email**
+![mail](./public/mail.png) -->
 
 ### 1️⃣ 기술스택
 
 - FrameWork : Next.js
-- Library : React Email, Zod, resend
+- Library : React Email, Zod, Resend
 - Language : TypeScript
 - Styling : tailwind, shadcn
 - DB : Prisma, sqlite
 
-### 2️⃣ 페이지별 기능? 소개? 역할?
+### 2️⃣ 페이지 기능
 
 #### ◼ **_Main_**
 
@@ -64,13 +70,16 @@ weather email은 동일한 mail주소로 1번만 받을 수 있다.
 
 ### 3️⃣ 트러블 슈팅
 
-1. **form에서 입력한 name과 mood를 사용하기 위해서 schema 형식 변경**  
-    * 없던 값을 추가하는 과정에서 오류 발생.  
-   →prisma studio의 값을 모두 delete해주고 다시 prisma migrate 해줌
+1. **form에서 입력한 name과 mood를 사용하기 위해서 schema 형식 변경**
 
-2. **날씨 API를 react email 에서 받아 올 수 없음**  
-    * react email은 정적 페이지라서 API를 바로 받아서 사용할 수 없다.  
-    받아온 값을 그려주는 것만 가능하다.  
-   → server에서 데이터를 받아서 props 형태로 mail로 전달하는 방법 선택  
-   → server action에서 weather 값을 불러와서 return값에 함께 반환  
-   → 반환된 값을 resend를 통해서 react email에 전달
+   - 없던 값을 추가하는 과정에서 오류 발생.  
+    → 새로 추가하는 값이 *@default*라서 기존 test값들과 충돌 발생   
+    → prisma studio의 값을 모두 delete해주고 다시 prisma migrate 해줌
+
+2. **날씨 API를 react email 에서 받아 올 수 없음**
+   - react email은 정적 페이지라서 API를 바로 받아서 사용할 수 없다.  
+      받아온 값을 그려주는 것만 가능하다.  
+     → server에서 데이터를 받아서 props 형태로 email page로 전달  
+     1) server action에서 weather API값을 불러와서 return값에 함께 반환  
+     2) 반환된 값을 fetch( )메서드로 server에 전달
+     3) server에서 resend를 통해서 react email에 사용할 data 전달
