@@ -79,4 +79,14 @@ weather email은 동일한 mail주소로 1번만 받을 수 있다.
      → server에서 데이터를 받아서 props 형태로 email page로 전달  
      1) server action에서 weather API값을 불러와서 return값에 함께 반환  
      2) 반환된 값을 fetch( )메서드로 server에 전달
-     3) server에서 resend를 통해서 react email에 사용할 data 전달
+     3) server에서 resend를 통해서 react email에 사용할 data 전달    
+
+3. **서버에서 weather API fetch( ) 요청 오류**    
+    - 서버에서 상대경로로 fetch( )해서 문제 발생    
+    - weather API 함수 위치 변경( app>api>weather>routs.ts → lib>weather.ts )    
+    → 함수를 불러서 사용하는 곳이 서버라서 route.ts에 함수를 두면    
+    서버에서 서버로 요청을 보내게 된다.     
+    → 같은 서버의 API라우트를 HTTP로 다시 요청을 보내는 비효율적 요청이 발생하므로 함수를 분리함    
+    - 더 빠르게 data를 받고 안전하게 사용하기 위해서 lib폴더에서 함수로 분리하고, 사용시 fetch( ) 대신 직접 함수를 import해서 사용    
+  
+
